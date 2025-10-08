@@ -1,0 +1,19 @@
+# Git files
+.git
+.gitignore
+
+# Documentation
+README.md
+LICENSE
+docs/
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Configuration
+.env
+.env.example
+Makefile
+

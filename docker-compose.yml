@@ -1,0 +1,45 @@
+services:
+  hamdashboard:
+    build: .
+    container_name: hamdashboard
+    ports:
+      - "8091:80"
+    restart: unless-stopped
+    volumes:
+      # Optional: Mount config.js for easy configuration changes without rebuilding
+      - ./config.js:/usr/share/nginx/html/config.js:ro
+    environment:
+      - TZ=UTC
+    # Traefik labels for automatic configuration
+    labels:
+      - "traefik.enable=true"
+      # Tell Traefik which network to use
+      - "traefik.docker.network=${TRAEFIK_NETWORK:-traefik}"
+      # HTTP router
+      - "traefik.http.routers.hamdashboard.rule=Host(`${HAMDASH_DOMAIN:-hamdash.local}`)"
+      - "traefik.http.routers.hamdashboard.entrypoints=web"
+      - "traefik.http.services.hamdashboard.loadbalancer.server.port=80"
+      # HTTPS router (optional, uncomment if using HTTPS)
+      # - "traefik.http.routers.hamdashboard-secure.rule=Host(`${HAMDASH_DOMAIN:-hamdash.local}`)"
+      # - "traefik.http.routers.hamdashboard-secure.entrypoints=websecure"
+      # - "traefik.http.routers.hamdashboard-secure.tls=true"
+      # - "traefik.http.routers.hamdashboard-secure.tls.certresolver=letsencrypt"
+      # Redirect HTTP to HTTPS (optional, uncomment if using HTTPS)
+      # - "traefik.http.middlewares.hamdashboard-redirect.redirectscheme.scheme=https"
+      # - "traefik.http.routers.hamdashboard.middlewares=hamdashboard-redirect"
+    # DNS configuration for Pi-hole (optional)
+    dns:
+      - ${PIHOLE_DNS:-1.1.1.1}
+      - 1.0.0.1
+    # Network configuration
+    networks:
+      - default
+      - traefik
+
+networks:
+  traefik:
+    external: true
+    name: ${TRAEFIK_NETWORK:-traefik}
+  default:
+    driver: bridge
+
