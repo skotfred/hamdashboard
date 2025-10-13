@@ -18,6 +18,9 @@ COPY favicon.ico .
 COPY favicon.svg .
 COPY examples ./examples
 
+# Ensure nginx user has no shell access (Alpine uses /sbin/nologin)
+RUN sed -i 's|/bin/sh|/sbin/nologin|g' /etc/passwd
+
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
