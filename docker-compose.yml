@@ -19,14 +19,6 @@ services:
       - "traefik.http.routers.hamdashboard.rule=Host(`${HAMDASH_DOMAIN:-hamdash.local}`)"
       - "traefik.http.routers.hamdashboard.entrypoints=web"
       - "traefik.http.services.hamdashboard.loadbalancer.server.port=80"
-      # HTTPS router
-      - "traefik.http.routers.hamdashboard-secure.rule=Host(`${HAMDASH_DOMAIN:-hamdash.local}`)"
-      - "traefik.http.routers.hamdashboard-secure.entrypoints=websecure"
-      - "traefik.http.routers.hamdashboard-secure.tls=true"
-      - "traefik.http.routers.hamdashboard-secure.tls.certresolver=letsencrypt"
-      # Redirect HTTP to HTTPS
-      - "traefik.http.middlewares.hamdashboard-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.hamdashboard.middlewares=hamdashboard-redirect"
     # DNS configuration for Pi-hole
     dns:
       - ${PIHOLE_DNS:-172.19.0.53}  # Pi-hole DNS
