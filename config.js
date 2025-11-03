@@ -80,16 +80,16 @@ var aIMG = [
   ],
   [
     "LIGHTNING",
-    "https://images.lightningmaps.org/blitzortung/america/index.php?animation=usa",
+    "iframe|https://map.blitzortung.org/#6/41.59/-88.06",
   ],
   [
     "LIGHTNING LOCAL",
-    "https://www.blitzortung.org/en/Images/image_b_ny.png",
+    "iframe|https://map.blitzortung.org/#9/41.59/-88.06",
   ],
   ["YOUTUBE EXAMPLE", "iframe|https://www.youtube.com/embed/fzPFaXAV_2Y?autoplay=1&mute=1"],
   [
-    "WEBSITE EXAMPLE",
-    "iframe|https://globe.adsbexchange.com/?airport=YYZ",
+    "ADS-B (ORD)",
+    "iframe|https://globe.adsbexchange.com/?airport=ORD",
   ],
   ["VIDEO EXAMPLE", "https://himawari8.nict.go.jp/movie/720/20240611_pifd.mp4"],
   ["HF PROPAGATION",
