@@ -21,7 +21,7 @@ var aURL = [
   [
     "2196F3",
     "LIGHTNING",
-    "https://map.blitzortung.org/#3.87/36.5/-89.41",
+    "https://map.blitzortung.org/#6/41.59/-88.06",
     "1",
     "R",
   ],
@@ -29,7 +29,7 @@ var aURL = [
   [
     "2196F3",
     "RADAR",
-    "https://weather.gc.ca/?layers=alert,radar&center=43.39961001,-78.53212031&zoom=6&alertTableFilterProv=ON",
+    "https://radar.weather.gov/?lat=41.59&lon=-88.06&zoom=7",
     "1",
     "R"
   ],
@@ -37,14 +37,14 @@ var aURL = [
   [
     "2196F3",
     "WEATHER",
-    "https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=44.0157&lon=-79.4591&zoom=5",
+    "https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=41.59&lon=-88.06&zoom=7",
     "1",
     "R",
   ],
   [
     "2196F3",
     "WINDS",
-    "https://earth.nullschool.net/#current/wind/surface/level/orthographic=-78.79,44.09,3000",
+    "https://earth.nullschool.net/#current/wind/surface/level/orthographic=-88.06,41.59,3000",
     "1",
     "R",
   ],
@@ -60,7 +60,7 @@ var aIMG = [
   ["RADAR", "https://radar.weather.gov/ridge/standard/CONUS_loop.gif"],
   [
     "LOCAL RADAR",
-    "https://radar.weather.gov/ridge/standard/KNQA_loop.gif",
+    "https://radar.weather.gov/ridge/standard/KLOT_loop.gif",
   ],
   [
     "NOAA D-RAP",
