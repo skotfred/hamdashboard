@@ -23,6 +23,7 @@ services:
     dns:
       - ${PIHOLE_DNS:-172.19.0.53}  # Pi-hole DNS
       - 1.1.1.1      # Fallback DNS (Cloudflare)
+    hostname: hamdash
     # Network configuration
     networks:
       - default
