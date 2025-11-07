@@ -14,9 +14,9 @@ services:
     labels:
       - "traefik.enable=true"
       # Tell Traefik which network to use
-      - "traefik.docker.network=${TRAEFIK_NETWORK:-traefik}"
+      - "traefik.docker.network=traefik-network"
       # HTTP router
-      - "traefik.http.routers.hamdashboard.rule=Host(`${HAMDASH_DOMAIN:-hamdash.local}`)"
+      - "traefik.http.routers.hamdashboard.rule=Host(`hamdash.localhost`)"
       - "traefik.http.routers.hamdashboard.entrypoints=web"
       - "traefik.http.services.hamdashboard.loadbalancer.server.port=80"
     # DNS configuration for Pi-hole
@@ -26,13 +26,12 @@ services:
     hostname: hamdash
     # Network configuration
     networks:
-      - default
       - traefik
 
 networks:
   traefik:
     external: true
-    name: ${TRAEFIK_NETWORK:-traefik}
+    name: traefik-network
   default:
     driver: bridge
 
