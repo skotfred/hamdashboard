@@ -10,6 +10,11 @@ services:
       - ./config.js:/usr/share/nginx/html/config.js:ro
     environment:
       - TZ=UTC
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
     # Traefik labels for automatic configuration
     labels:
       - "traefik.enable=true"
