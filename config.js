@@ -86,7 +86,7 @@ var aIMG = [
     "LIGHTNING LOCAL",
     "iframe|https://map.blitzortung.org/#9/41.59/-88.06",
   ],
-  ["YOUTUBE EXAMPLE", "iframe|https://www.youtube.com/embed/fzPFaXAV_2Y?autoplay=1&mute=1"],
+  ["WEATHERSTAR", "iframe|https://weatherstar.netbymatt.com/"],
   [
     "ADS-B (ORD)",
     "iframe|https://globe.adsbexchange.com/?airport=ORD",
