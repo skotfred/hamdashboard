@@ -25,7 +25,7 @@ RUN apk add --no-cache \
 ENV NGINX_VERSION=1.25.3
 
 # Set pagespeed version
-ENV PAGESPEED_VERSION=1.15.0.1-beta
+ENV PAGESPEED_VERSION=1.13.35.2-stable
 
 # Download and extract nginx source
 RUN cd /tmp && \
@@ -35,15 +35,15 @@ RUN cd /tmp && \
 
 # Download and extract ngx_pagespeed
 RUN cd /tmp && \
-    wget https://github.com/apache/incubator-pagespeed-ngx/archive/v${PAGESPEED_VERSION}.tar.gz && \
-    tar zxf v${PAGESPEED_VERSION}.tar.gz && \
+    wget -L https://github.com/apache/incubator-pagespeed-ngx/archive/v${PAGESPEED_VERSION}.tar.gz -O ngx_pagespeed.tar.gz && \
+    tar zxf ngx_pagespeed.tar.gz && \
     mv incubator-pagespeed-ngx-${PAGESPEED_VERSION} ngx_pagespeed-${PAGESPEED_VERSION} && \
-    rm v${PAGESPEED_VERSION}.tar.gz
+    rm ngx_pagespeed.tar.gz
 
 # Download PSOL (PageSpeed Optimization Libraries)
-# For version 1.15.0.1-beta, use PSOL 1.13.35.2
+# For version 1.13.35.2-stable, use PSOL 1.13.35.2
 RUN cd /tmp/ngx_pagespeed-${PAGESPEED_VERSION} && \
-    wget -O psol.tar.gz https://dl.google.com/dl/page-speed/psol/1.13.35.2-x64.tar.gz && \
+    wget -L -O psol.tar.gz https://dl.google.com/dl/page-speed/psol/1.13.35.2-x64.tar.gz && \
     tar zxf psol.tar.gz && \
     rm psol.tar.gz
 
