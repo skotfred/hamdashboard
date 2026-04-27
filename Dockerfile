@@ -6,6 +6,7 @@ LABEL version="1.0"
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY ngx_pagespeed_csp_nonce.example.conf /usr/share/nginx/ngx_pagespeed_csp_nonce.example.conf
 
 # Set working directory to nginx html root
 WORKDIR /usr/share/nginx/html
