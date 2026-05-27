@@ -1,4 +1,4 @@
-.PHONY: help build run start stop restart clean logs shell ps status rebuild env network
+.PHONY: help build run start stop restart clean logs shell ps status rebuild env network check-dependencies
 
 # Variables
 IMAGE_NAME = hamdashboard
@@ -24,6 +24,7 @@ help:
 	@echo "  make network       - Create Traefik network if it doesn't exist"
 	@echo "  make env           - Create .env file from example"
 	@echo "  make clean         - Stop and remove container and image"
+	@echo "  make check-dependencies - Check for image and base dependency updates"
 	@echo ""
 	@echo "Traefik Integration:"
 	@echo "  See docs/README-TRAEFIK.md for detailed configuration"
@@ -112,6 +113,16 @@ ps:
 status:
 	@echo "Container status:"
 	@docker ps -a --filter "name=$(CONTAINER_NAME)" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+.PHONY: check-dependencies
+check-dependencies:
+	@echo "Checking for dependency updates..."
+	@if [ -f docker-compose.yml ] || [ -f compose.yml ]; then \
+		docker compose pull --ignore-buildable 2>/dev/null || true; \
+	fi
+	@echo ""
+	@echo "Dockerfile base images (review tags for updates):"
+	@grep -hE '^[[:space:]]*FROM ' Dockerfile Dockerfile.* 2>/dev/null | sed 's/^[[:space:]]*//' | sort -u || true
 
 # Clean up everything
 clean:
