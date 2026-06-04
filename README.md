@@ -420,3 +420,8 @@ Tutorial contributed by Robert W3RDW
 ### Sources display example
 
 ![Sources display example](https://github.com/VA3HDL/hamdashboard/blob/main/examples/sources.png?raw=true)
+
+## MAINTAINERS
+
+Scott Fredrickson (scott at giantgeek.com)
+
