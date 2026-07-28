@@ -1,4 +1,4 @@
-FROM nginx:1.31.1-alpine
+FROM nginx:1.31.3-alpine
 
 LABEL maintainer="Scott Fredrickson <scott@giantgeek.com>"
 LABEL description="Ham Radio Dashboard - VA3HDL Hamdash"
