@@ -4,7 +4,7 @@
 Ham radio dashboard — iframe tiles for weather, propagation, etc. (wrapper of VA3HDL/hamdashboard).
 
 ## Tech stack
-nginx:1.31 Alpine, static HTML/JS, Compose, Traefik.
+nginx:1.31.4 Alpine, static HTML/JS, Compose, Traefik.
 
 ## Key files
 - `docker-compose.yml`, `Dockerfile`, `hamdash.html`, `config.js`, `nginx.conf`
