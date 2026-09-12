@@ -576,9 +576,14 @@ db   8D Y8b  d8 88 `88.   .88.   88         88    db   8D
         };
 
         // Load from LocalStorage or Defaults
-        settings = JSON.parse(localStorage.getItem("hamdash_config")) || {
-          ...defaults,
-        };
+        try {
+          settings = JSON.parse(localStorage.getItem("hamdash_config")) || {
+            ...defaults,
+          };
+        } catch (e) {
+          // Storage unavailable (incognito/blocked) or invalid JSON
+          settings = { ...defaults };
+        }
 
         if (settings.settingsSource) {
           document.querySelector(
@@ -762,8 +767,12 @@ db   8D Y8b  d8 88 `88.   .88.   88         88    db   8D
             ];
           });
 
-          localStorage.setItem("hamdash_config", JSON.stringify(settings));
-          alert("Settings saved!");
+          try {
+            localStorage.setItem("hamdash_config", JSON.stringify(settings));
+            alert("Settings saved!");
+          } catch (e) {
+            alert("Unable to save settings (storage unavailable).");
+          }
           updateInputs();
           updateMenuTable();
           updateFeedTable();
@@ -772,8 +781,12 @@ db   8D Y8b  d8 88 `88.   .88.   88         88    db   8D
 
         // Reset to Defaults
         document.getElementById("resetConfig").onclick = () => {
-          localStorage.setItem("hamdash_config", JSON.stringify(defaults));
-          alert("Settings reset to defaults!");
+          try {
+            localStorage.setItem("hamdash_config", JSON.stringify(defaults));
+            alert("Settings reset to defaults!");
+          } catch (e) {
+            alert("Unable to reset settings in storage (storage unavailable).");
+          }
           settings = defaults;
           updateInputs();
           updateMenuTable();
@@ -783,8 +796,12 @@ db   8D Y8b  d8 88 `88.   .88.   88         88    db   8D
 
         // Delete Configuration from local storage
         document.getElementById("deleteConfig").onclick = () => {
-          window.localStorage.removeItem("hamdash_config");
-          alert("Deleted local storage settings!");
+          try {
+            window.localStorage.removeItem("hamdash_config");
+            alert("Deleted local storage settings!");
+          } catch (e) {
+            alert("Unable to delete settings (storage unavailable).");
+          }
           // settings = defaults;
           updateInputs();
           updateMenuTable();
