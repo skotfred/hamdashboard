@@ -5,6 +5,7 @@ services:
     ports:
       - "8091:80"
     restart: unless-stopped
+    mem_limit: 512m
     volumes:
       # Optional: Mount config.js for easy configuration changes without rebuilding
       - ./config.js:/usr/share/nginx/html/config.js:ro
