@@ -17,6 +17,7 @@ COPY config.js .
 COPY wheelzoom.js .
 COPY favicon.ico .
 COPY favicon.svg .
+COPY robots.txt .
 COPY examples ./examples
 
 # Ensure nginx user has no shell access (Alpine uses /sbin/nologin)

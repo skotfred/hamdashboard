@@ -1,0 +1,5 @@
+#robots.txt (for details see - https://www.robotstxt.org/robotstxt.html)
+
+# GO AWAY!
+User-agent: *
+Disallow: /
