@@ -6,11 +6,11 @@ CONTAINER_NAME = hamdashboard
 PORT = 8091
 
 # Build time (UTC) for the org.opencontainers.image.created image label, plus the same
-# instant as an image tag (tags cannot contain ':'): 2026-10-29T15:04:00Z -> 20261029T150400Z
+# instant as a yyyymmdd-hhmmss image tag (tags cannot contain ':'): 2026-10-29T15:04:00Z -> 20261029-150400
 ifndef BUILD_DATE
 BUILD_DATE := $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
 endif
-BUILD_TAG := $(subst :,,$(subst -,,$(BUILD_DATE)))
+BUILD_TAG := $(subst Z,,$(subst T,-,$(subst :,,$(subst -,,$(BUILD_DATE)))))
 export BUILD_DATE BUILD_TAG
 
 # Default target
@@ -147,6 +147,6 @@ KEEP_TAGS ?= 3
 prune-tags: ## Remove all but the newest $(KEEP_TAGS) build-time image tags
 	@for repo in $$(docker compose --profile '*' config --images | sed 's/:[^:/]*$$//' | sort -u); do \
 		docker image ls "$$repo" --format '{{.Tag}}' \
-			| grep -E '^[0-9]{8}T[0-9]{6}Z$$' | sort -r | tail -n +$$(($(KEEP_TAGS) + 1)) \
+			| grep -E '^[0-9]{8}-[0-9]{6}$$' | sort -r | tail -n +$$(($(KEEP_TAGS) + 1)) \
 			| while read -r tag; do docker rmi "$$repo:$$tag"; done; \
 	done
