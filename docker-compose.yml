@@ -1,6 +1,11 @@
 services:
   hamdashboard:
-    build: .
+    build:
+      context: .
+      args:
+        BUILD_DATE: ${BUILD_DATE:-unknown}
+      tags:
+        - "hamdashboard-hamdashboard:${BUILD_TAG:-untagged}"
     container_name: hamdashboard
     ports:
       - "8091:80"

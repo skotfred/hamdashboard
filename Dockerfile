@@ -32,3 +32,8 @@ EXPOSE 80
 
 # Start nginx in foreground
 CMD ["nginx", "-g", "daemon off;"]
+
+# Build time (UTC) for `docker ps`/`docker inspect`; set by the Makefile via BUILD_DATE.
+# Kept last so a new timestamp does not invalidate any cached layers above.
+ARG BUILD_DATE=unknown
+LABEL org.opencontainers.image.created=$BUILD_DATE
