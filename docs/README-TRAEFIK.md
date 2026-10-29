@@ -22,7 +22,7 @@ If you already have Traefik running:
 
 3. Make sure the Traefik network exists:
    ```bash
-   docker network create traefik
+   docker network create traefik-network
    ```
 
 4. Start the dashboard:

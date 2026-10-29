@@ -46,8 +46,8 @@ env:
 # Create Traefik network if it doesn't exist
 network:
 	@echo "Checking Traefik network..."
-	@docker network inspect traefik >/dev/null 2>&1 || \
-		(echo "Creating Traefik network..." && docker network create traefik)
+	@docker network inspect traefik-network >/dev/null 2>&1 || \
+		(echo "Creating Traefik network..." && docker network create traefik-network)
 	@echo "✓ Traefik network ready"
 
 # Build the Docker image
