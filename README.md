@@ -421,6 +421,16 @@ Tutorial contributed by Robert W3RDW
 
 ![Sources display example](https://github.com/VA3HDL/hamdashboard/blob/main/examples/sources.png?raw=true)
 
+## Environment variables
+
+| Variable | Needed | Purpose |
+|---|---|---|
+| `PIHOLE_DNS` | Optional | DNS server for the container; defaults to `172.19.0.53` |
+| `TZ` | Optional | Timezone; set in `docker-compose.yml` |
+| `BUILD_TAG`, `BUILD_DATE` | Optional | Docker image tag and build date; default to `untagged` and `unknown` |
+
+`.env.example` also lists `HAMDASH_DOMAIN` and `TRAEFIK_NETWORK`, but `docker-compose.yml` does not read them.
+
 ## MAINTAINERS
 
 Scott Fredrickson (scott at giantgeek.com)
