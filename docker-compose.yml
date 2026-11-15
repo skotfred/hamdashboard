@@ -29,6 +29,12 @@ services:
       # HTTP router
       - "traefik.http.routers.hamdashboard.rule=Host(`hamdash.localhost`)"
       - "traefik.http.routers.hamdashboard.entrypoints=web"
+      - "traefik.http.routers.hamdashboard.service=hamdashboard"
+      # HTTPS router (uses Traefik's default *.localhost certificate)
+      - "traefik.http.routers.hamdashboard-secure.rule=Host(`hamdash.localhost`)"
+      - "traefik.http.routers.hamdashboard-secure.entrypoints=websecure"
+      - "traefik.http.routers.hamdashboard-secure.service=hamdashboard"
+      - "traefik.http.routers.hamdashboard-secure.tls=true"
       - "traefik.http.services.hamdashboard.loadbalancer.server.port=80"
     # DNS configuration for Pi-hole
     dns:

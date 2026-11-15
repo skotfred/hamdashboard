@@ -39,7 +39,7 @@ help:
 	@echo ""
 	@echo "Access the dashboard at:"
 	@echo "  Direct:  http://localhost:$(PORT)"
-	@echo "  Traefik: http://hamdash.localhost (requires existing Traefik)"
+	@echo "  Traefik: https://hamdash.localhost (requires existing Traefik)"
 
 # Create .env file from example
 env:
@@ -75,7 +75,7 @@ run: network
 	docker compose up -d
 	@echo ""
 	@echo "✓ Dashboard is running"
-	@echo "  Traefik URL: http://$$(grep HAMDASH_DOMAIN .env | cut -d '=' -f2)"
+	@echo "  Traefik URL: https://$$(grep HAMDASH_DOMAIN .env | cut -d '=' -f2)"
 	@echo "  Direct URL:  http://localhost:$(PORT)"
 
 # Start existing stopped container

@@ -13,7 +13,7 @@ nginx:1.31.7 Alpine, static HTML/JS, Compose (`mem_limit`), Traefik.
 
 ## Commands
 - Start: `docker compose up -d` or `make run`
-- Port 8091; Traefik: `http://hamdash.localhost`
+- Port 8091; Traefik: `https://hamdash.localhost` (also `http://`)
 
 
 ## Environment
