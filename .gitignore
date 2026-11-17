@@ -1,2 +1,8 @@
 .idea
 .vscode
+
+# Eclipse
+.classpath
+.project
+.settings/
+.checkstyle
