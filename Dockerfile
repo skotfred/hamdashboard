@@ -6,7 +6,6 @@ LABEL version="1.0"
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY ngx_pagespeed_csp_nonce.example.conf /usr/share/nginx/ngx_pagespeed_csp_nonce.example.conf
 
 # Set working directory to nginx html root
 WORKDIR /usr/share/nginx/html
@@ -23,9 +22,9 @@ COPY examples ./examples
 # Ensure nginx user has no shell access (Alpine uses /sbin/nologin)
 RUN sed -i 's|/bin/sh|/sbin/nologin|g' /etc/passwd
 
-# Add healthcheck
+# Exactly HTTP 200 from nginx on /admin ("/" is a 301 to /admin; redirects are not followed)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+    CMD wget -S -O /dev/null -T 4 http://127.0.0.1/admin 2>&1 | grep -m1 -E '^ *HTTP/' | grep -qE '^ *HTTP/1[.][01] 200 ' || exit 1
 
 # Expose port 80
 EXPOSE 80

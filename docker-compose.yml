@@ -17,7 +17,7 @@ services:
     environment:
       - TZ=UTC
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/"]
+      test: ["CMD-SHELL", "wget -S -O /dev/null -T 4 http://127.0.0.1/admin 2>&1 | grep -m1 -E '^ *HTTP/' | grep -qE '^ *HTTP/1[.][01] 200 '"]
       interval: 30s
       timeout: 3s
       retries: 3
